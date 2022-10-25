@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PostController {
@@ -33,15 +34,15 @@ public class PostController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/view")
-    public List<PostModel> Viewpost(){
-        return (List<PostModel>) dao.ViewAllPosts();
+    public List<Map<String,String>> Viewpost(){
+        return (List<Map<String,String>>) dao.ViewAllPosts();
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/single",consumes = "application/json",produces = "application/json")
-    List<PostModel> ViewSingle(@RequestBody PostModel post)
+    public List<Map<String,String>> ViewSingle(@RequestBody PostModel post)
     {
-        return (List<PostModel>) dao.ViewSingle(post.getUser_id());
+        return (List<Map<String,String>>) dao.ViewSingle(post.getUser_id());
     }
 
 }
